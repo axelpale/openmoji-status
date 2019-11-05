@@ -1,2 +1,3 @@
 # openmoji-status
-A public status map for OpenMoji
+
+A public emoji status map for OpenMoji project.

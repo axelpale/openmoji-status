@@ -1,0 +1,8 @@
+img/
+img/*.png
+img/*.jpg
+dist/
+dist/bundle.js
+index.html
+favicon.ico
+LICENSE
