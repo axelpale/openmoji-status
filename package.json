@@ -7,9 +7,9 @@
   "scripts": {
     "build": "webpack",
     "deploy": "rsync -r --include-from=\".deployinclude\" --exclude=\"*\" ./ xeli@xeli.webfactional.com:~/webapps/demos/openmoji-status",
-    "start": "nodemon --watch src --exec 'npm run build'",
     "lint": "standard 'src/**/*.js' && echo OK",
-    "test": "npm run lint"
+    "test": "npm run lint",
+    "watch": "nodemon --watch src --exec 'npm run build'"
   },
   "author": {
     "name": "Akseli Palen",
