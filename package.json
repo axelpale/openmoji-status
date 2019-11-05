@@ -29,5 +29,7 @@
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7"
   },
-  "dependencies": {}
+  "dependencies": {
+    "emojibase-data": "^4.1.0"
+  }
 }
