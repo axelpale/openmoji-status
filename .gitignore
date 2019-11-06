@@ -1,4 +1,5 @@
 /dist/
+/preprocess/preprocessed.json
 
 package-lock.json
 

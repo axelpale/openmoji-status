@@ -1,7 +1,17 @@
 <h2>Emojis</h2>
 
-<% emojis.forEach(function (emoji) { %>
-<div>
-  <%= emoji.annotation %>
+<% emojis.forEach(function (emojiGroup) { %>
+<div class="emoji-group">
+  <h3><%= emojiGroup.name %></h3>
+  <% emojiGroup.emojis.forEach(function (emoji) { %>
+  <div>
+    <%= emoji.annotation %>
+    <% if (emoji.openmoji) { %>
+    <span class="status status-available">AVAILABLE</span>
+    <% } else { %>
+    <span class="status status-missing">MISSING</span>
+    <% } %>
+  </div>
+  <% }) %>
 </div>
 <% }) %>
