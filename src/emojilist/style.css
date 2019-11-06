@@ -1,8 +1,19 @@
+.emoji-group a {
+  text-decoration: none;
+}
+
+.status {
+  display: inline-block;
+  padding: 0.38rem;
+  margin: 0.38rem;
+  border: 1px solid black;
+}
 
 .status.status-available {
-  background-color: blue;
+  border: 1px solid blue;
 }
 
 .status.status-missing {
+  border: 1px solid darkred;
   background-color: red;
 }

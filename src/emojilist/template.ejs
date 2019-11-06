@@ -1,17 +1,27 @@
 <h2>Emojis</h2>
 
+<p>
+  <span class="status status-available">😀</span> = available in OpenMoji<br>
+  <span class="status status-missing">😀</span> = not available in OpenMoji
+</p>
+
 <% emojis.forEach(function (emojiGroup) { %>
 <div class="emoji-group">
   <h3><%= emojiGroup.name %></h3>
   <% emojiGroup.emojis.forEach(function (emoji) { %>
-  <div>
-    <%= emoji.annotation %>
-    <% if (emoji.openmoji) { %>
-    <span class="status status-available">AVAILABLE</span>
-    <% } else { %>
-    <span class="status status-missing">MISSING</span>
-    <% } %>
-  </div>
+  <%
+    var statusClass
+    if (emoji.openmoji) {
+      statusClass = 'status status-available'
+    } else {
+      statusClass = 'status status-missing'
+    }
+  %>
+  <a href="https://openmoji.org/library/#emoji=<%= emoji.baseHexcode %>" target="_blank">
+    <span class="<%= statusClass %>" title="<%= emoji.annotation %>">
+      <%= emoji.emoji %>
+    </span>
+  </a>
   <% }) %>
 </div>
 <% }) %>

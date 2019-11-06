@@ -10,16 +10,18 @@
   <style>
     html, body { margin: 0; padding: 0; width: 100%; height: 100%; }
     body { background: white; color: black; font-family: sans-serif; }
-    a:link { color: gray; }
-    a:visited { color: gray; }
-    a:hover { color: lightgray; }
-    canvas { display: block; width: 100%; height: 100%; }
+    a:link { color: blue; }
+    a:visited { color: purple; }
+    a:hover { color: lightblue; }
+    .container { padding: 1rem; }
   </style>
 </head>
 <body>
-  <h1 id="title">OpenMoji Status</h1>
-  <p>This is a prototype that aims to displays the development status of emojis in OpenMoji project. For the discussion regarding this prototype, see <a href="https://github.com/hfg-gmuend/openmoji/issues/30">OpenMoji Issue #30</a> and <a href="https://github.com/axelpale/openmoji-status">OpenMoji-Status at GitHub</a>.</p>
-  <div id="container" class="container"></div>
+  <div class="container">
+    <h1 id="title">OpenMoji Status</h1>
+    <p>This is a prototype that aims to displays the development status of emojis in <a href="https://openmoji.org/">OpenMoji project</a>. Missing emojis are marked with red background. Currently there are no missing emojis. Click an emoji to view it at openmoji.org. For the discussion regarding this prototype, see <a href="https://github.com/hfg-gmuend/openmoji/issues/30">OpenMoji Issue #30</a> and <a href="https://github.com/axelpale/openmoji-status">openmoji-status at GitHub</a>.</p>
+    <div id="emojis" class="emojis"></div>
+  </div>
   <script src="dist/bundle.js"></script>
 </body>
 </html>
