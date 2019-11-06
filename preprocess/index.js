@@ -1,4 +1,4 @@
-const emojibaseCompact = require('emojibase-data/en/compact.json')
+const emojibaseData = require('emojibase-data/en/data.json')
 const emojibaseGroups = require('emojibase-data/meta/groups.json')
 const openmoji = require('./openmoji-2019-11-05.json')
 const fs = require('fs')
@@ -15,6 +15,39 @@ const has = (obj, key) => {
 //   "order":1,"shortcodes":["gleeful"],
 //   "tags":["face","grin"],
 //   "unicode":"😀"
+// }
+
+// An example of an emoji from emojibase data.json
+// {
+//   "annotation":"waving hand",
+//   "name":"WAVING HAND SIGN",
+//   "hexcode":"1F44B",
+//   "shortcodes":["wave"],
+//   "tags":["hand","wave","waving"],
+//   "emoji":"👋",
+//   "text":"",
+//   "type":1,
+//   "order":161,
+//   "group":1,
+//   "subgroup":15,
+//   "version":1,
+//   "skins":[
+//     {
+//       "annotation":"waving hand: light skin tone",
+//       "name":"WAVING HAND SIGN, EMOJI MODIFIER FITZPATRICK TYPE-1-2",
+//       "hexcode":"1F44B-1F3FB",
+//       "shortcodes":["wave_tone1"],
+//       "emoji":"👋🏻",
+//       "text":"",
+//       "type":1,
+//       "order":162,
+//       "group":1,
+//       "subgroup":15,
+//       "version":2,
+//       "tone":1
+//     },
+//     ...
+//   ]
 // }
 
 // An example of an emoji from openmoji json
@@ -42,8 +75,28 @@ const hexToOpenMoji = openmoji.reduce((acc, emoji) => {
   return acc
 }, {})
 
+// Flatten the data by extracting skin tones.
+const emojibaseFlat = emojibaseData.reduce((acc, emoji) => {
+  if (emoji.skins) {
+    // Remove skins from the base before inserting.
+    acc.push(Object.assign({}, emoji, {
+      baseHexcode: emoji.hexcode,
+      skins: []
+    }))
+    // Track the base emoji, because OpenMoji does not understand tone codes
+    emoji.skins.forEach(skin => {
+      acc.push(Object.assign({}, skin, { baseHexcode: emoji.hexcode }))
+    })
+  } else {
+    acc.push(Object.assign({}, emoji, {
+      baseHexcode: emoji.hexcode
+    }))
+  }
+  return acc
+}, [])
+
 // Construct an array of group objects
-const markedEmojis = emojibaseCompact.reduce((acc, emoji) => {
+const markedEmojis = emojibaseFlat.reduce((acc, emoji) => {
   const groupIndex = emoji.group
   const groupId = '' + groupIndex
   const groupName = emojibaseGroups.groups[groupId]
